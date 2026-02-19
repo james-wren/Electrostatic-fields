@@ -8,8 +8,8 @@ def get_e(q, pos, x, y):
     dx, dy = x - pos[0], y - pos[1]
     r = np.sqrt(dx**2 + dy**2)
 
-    U = q * dx / r
-    V = q * dy / r 
+    U = q * dx / r**2
+    V = q * dy / r**2
     ex = q * dx / r**3
     ey = q * dy / r**3
 
@@ -23,7 +23,7 @@ def find_points(charges):
         m = np.hypot(ex, ey)
         m = m.flatten()
         if not first:
-            U = (U + u)
+            U = U + u
             V = (V + v)
             M = (M + m)
         else:
@@ -31,6 +31,8 @@ def find_points(charges):
             V = v
             M = m
             first = False
+    U = np.log(U)
+    V = np.log(V)
     return U, V, M
 
 #I now need to set up my graph with mpl and np

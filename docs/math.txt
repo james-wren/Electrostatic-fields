@@ -1,3 +1,0 @@
-E = kq/r^2
-k is simply one
-q is 1 for a positive charge and -1 for a negative charge

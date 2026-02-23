@@ -1,0 +1,1 @@
+I FINALLY figured out how to normalize thew vectors while keeping correct summation (All I had to do was divide by M, which is effectivly just a map of the stregth, duh). To be fair im only in algebra 2, so teaching my self all this exponential math was not very easy.

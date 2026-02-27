@@ -14,7 +14,7 @@ def get_e(q, pos, x, y):
     return ex, ey
 
 # function to calculate the value for each point, charges is the same tuple mentioned in line 5
-def calc_field(charges):
+def calc_field(charges, X, Y):
     ex, ey = np.zeros(X.shape), np.zeros(Y.shape) # initiates ex and ey by seting them to zeros in the shape of X and Y arrays
     for q, pos in charges: # divides the tuple into two variables while looping for the amount of them.
         ex_add, ey_add = get_e(q, pos, X, Y) # Temporarily sets ex_add and ey_add to their respective values
@@ -28,18 +28,18 @@ def calc_field(charges):
 
 # START OF SCRIPT RUNNING
 # Sets up graph
-x = np.linspace(-100, 100, 40) # Sets x and y values
-y = np.linspace(-100, 100, 40)
-X, Y = np.meshgrid(x, y) # Turns previous values into mesh grid
+def setup_graph(width, height, interval_x, interval_y):
+    x = np.linspace(0, width, interval_x) # Sets x and y values
+    y = np.linspace(0, height, interval_y)
+    X, Y = np.meshgrid(x, y) # Turns previous values into mesh grid
+    return X, Y
 
 # Defining charges
 # (q, (x, y)) q is 1 for positive and -1 for negative
-charges = [(-1, (-19, 93)), (1, (-32, 20)), (1, (-14, 62)), (-1, (-68, -55)), (-1, (-33, 11)), (-1, (-46, -5)), (1, (-30, -46)), (-1, (-96, -83)), (-1, (86, 46)), (1, (30, -14))]
 
-
-Un, Vn, M = calc_field(charges) # calls the calc field function and assigns the respective values
-norm = mpl.colors.LogNorm(vmin=1e-4, vmax=1.0) # Normalizes color map
-
+def create_quiver(X, Y, charges):
+    Un, Vn, M = calc_field(charges, X, Y) # calls the calc field function and assigns the respective values
+    norm = mpl.colors.LogNorm(vmin=1e-4, vmax=1.0) # Normalizes color map
 # Graphs the previous values on a quiver
-plt.quiver(X, Y, Un, Vn, M, norm=norm, cmap='CMRmap', pivot='middle', width=0.002, headwidth=2, headlength=2, headaxislength=2)
-plt.show() # Shows the quiver
+    plt.quiver(X, Y, Un, Vn, M, norm=norm, cmap='CMRmap', pivot='middle', width=0.002, headwidth=2, headlength=2, headaxislength=2)
+    plt.show() # Shows the quiver

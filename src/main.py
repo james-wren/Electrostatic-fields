@@ -1,4 +1,5 @@
-from simulation import field_generator
+from simulation import field_generator as fld
+from gui import gui
 
 charges = [
     (-1, (45, 162)), 
@@ -14,5 +15,6 @@ charges = [
 ]
 
 
-X, Y = field_generator.setup_graph(200, 200, 40, 40)
-field_generator.create_quiver(X, Y, charges)
+X, Y = fld.setup_graph(200, 200, 40, 40)
+fig = fld.create_quiver(X, Y, charges)
+gui.create_window(fig)

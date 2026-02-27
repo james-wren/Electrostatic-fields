@@ -1,12 +1,25 @@
-import sys
+import tkinter as tk
 from tkinter import *
-from simulation import field_generator as fld
+from matplotlib.figure import Figure
+from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, NavigationToolbar2Tk)
 
-# root = Tk()
-# a = Label(root, text="Hello World!")
-# a.pack()
 
-# root.mainloop()
+def draw_plot(fig, window):
+    children = window.winfo_children()
+    for child in children:
+        if isinstance(child, tk.Canvas):
+            child.destroy()
+    canvas = FigureCanvasTkAgg(fig, master = window)
+    canvas.draw()
+    canvas.get_tk_widget().pack()
 
-X, Y = fld.setup_graph(200, 200, 40, 40)
-fld.create_quiver(X, Y)
+
+def create_window(fig):
+    window = Tk()
+    window.title('Electrostatic Simulation')
+    window.geometry("1000x1000")
+
+    generate_button = Button(master= window, height= 2, width=10, text="Plot", command=lambda: draw_plot(fig, window))
+
+    generate_button.pack()
+    window.mainloop()

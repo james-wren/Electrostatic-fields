@@ -1,6 +1,9 @@
 import numpy as np
 import matplotlib as mpl
 import matplotlib.pyplot as plt
+from matplotlib.figure import Figure
+from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg)
+
 
 # function to get e (pos and q is passed as a nested tuple in a list, as follows [(q, (x, y))])
 # x and y are the locations of the current point.
@@ -40,6 +43,8 @@ def setup_graph(width, height, interval_x, interval_y):
 def create_quiver(X, Y, charges):
     Un, Vn, M = calc_field(charges, X, Y) # calls the calc field function and assigns the respective values
     norm = mpl.colors.LogNorm(vmin=1e-4, vmax=1.0) # Normalizes color map
-# Graphs the previous values on a quiver
-    plt.quiver(X, Y, Un, Vn, M, norm=norm, cmap='CMRmap', pivot='middle', width=0.002, headwidth=2, headlength=2, headaxislength=2)
-    plt.show() # Shows the quiver
+    # Graphs the previous values on a quiver
+    fig = Figure(figsize= (10,10), dpi=100)
+    plot = fig.add_subplot(111)
+    plot.quiver(X, Y, Un, Vn, M, norm=norm, cmap='CMRmap', pivot='middle', width=0.002, headwidth=2, headlength=2, headaxislength=2)
+    return fig

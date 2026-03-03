@@ -2,28 +2,28 @@ import numpy as np
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 
-# function to get e (pos and q is passed as a nested tuple in a list, as follows [(q, (x, y))])
-# x and y are the locations of the current point.
+# function to get e (pos and q are passed as a nested tuple in a list, as follows [(q, (x, y))])
+# x and y are the locations of the current point
 def get_e(q, pos, x, y):
     dx, dy = x - pos[0], y - pos[1] # calculates the distance for x and y axis
-    r = np.sqrt(dx**2 + dy**2) # gets the hyponetues (is that how you spell that?) of the previous two distances.
+    r = np.sqrt(dx**2 + dy**2) # gets the hypotenuses (is that how you spell that?) of the previous two distances
 
-    ex = q * dx/ r**3 # plugs values into electrofield equation, adjusted to account for direction and assuming k is 1.
+    ex = q * dx/ r**3 # plugs values into electrofield equation, adjusted to account for direction and assuming k is 1
     ey = q * dy/ r**3
 
     return ex, ey
 
 # function to calculate the value for each point, charges is the same tuple mentioned in line 5
 def calc_field(charges):
-    ex, ey = np.zeros(X.shape), np.zeros(Y.shape) # initiates ex and ey by seting them to zeros in the shape of X and Y arrays
-    for q, pos in charges: # divides the tuple into two variables while looping for the amount of them.
+    ex, ey = np.zeros(X.shape), np.zeros(Y.shape) # initiates ex and ey by setting them to zeros in the shape of X and Y arrays
+    for q, pos in charges: # divides the tuple into two variables while looping for the number of them
         ex_add, ey_add = get_e(q, pos, X, Y) # Temporarily sets ex_add and ey_add to their respective values
-        ex += ex_add # adds the temp values to the summation.
+        ex += ex_add # adds the temp values to the summation
         ey += ey_add
     m = np.sqrt(ex**2 + ey**2)
     ex = ex / m
     ey = ey / m
-    return ex, ey, m # returns the summed ex, ey, and M (the calculation is done inline.)
+    return ex, ey, m # returns the summed ex, ey, and M
 
 
 # START OF SCRIPT RUNNING

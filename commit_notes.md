@@ -1,1 +1,1 @@
-I FINALLY figured out how to normalize thew vectors while keeping correct summation (All I had to do was divide by M, which is effectivly just a map of the stregth, duh). To be fair im only in algebra 2, so teaching my self all this exponential math was not very easy.
+Code works, finnaly. Just need to make a way to resize graph. Also need to update comments and finish [math.md](/docs/math.md) along with making other documentation. Other than that I'm done, may try to convert this into OOP but for now it works.

@@ -1,6 +1,5 @@
 import numpy as np
 import matplotlib as mpl
-import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg)
 
@@ -46,5 +45,5 @@ def create_quiver(X, Y, charges):
     # Graphs the previous values on a quiver
     fig = Figure(figsize= (10,10), dpi=100)
     plot = fig.add_subplot(111)
-    plot.quiver(X, Y, Un, Vn, M, norm=norm, cmap='CMRmap', pivot='middle', width=0.002, headwidth=2, headlength=2, headaxislength=2)
+    plot.quiver(X, Y, Un, Vn, M, norm=norm, cmap='CMRmap', pivot='middle', width=0.004, headwidth=2, headlength=2, headaxislength=2)
     return fig
